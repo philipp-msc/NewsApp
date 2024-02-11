@@ -52,7 +52,7 @@ class Post(models.Model):
         return self.text[0:123] + '...'
 
     def __str__(self):
-        return f'{self.name.title()}: {self.text}'
+        return f'{self.title.title()}: {self.text}'
 
 
 class PostCategory(models.Model):

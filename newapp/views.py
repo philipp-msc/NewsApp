@@ -5,7 +5,7 @@ from .models import Post
 
 class PostsList(ListView):
     model = Post
-    ordering = 'title'
+    ordering = '-dateCreation'
     template_name = 'news.html'
     context_object_name = 'news'
 
