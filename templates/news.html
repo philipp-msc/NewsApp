@@ -9,6 +9,11 @@ Post
 <h3>Все новости:</h3>
 <h3>Всего: {{ news|length }}</h3>
 <hr>
+
+<form action ="" method="get">
+    {{ filterset.form.as_p }}
+    <input type="submit" value="Найти" />
+</form>
 {% if news %}
 <table>
     <tr>
@@ -18,7 +23,8 @@ Post
     </tr>
     {% for i in news %}
     <tr>
-        <td>{{ i.title|censor}} </td>
+        <td>{{ i.title}} </td>
+        <!-- <td>{{ i.title|censor}} </td> -->
         <td>{{ i.dateCreation }}</td>
         <td>{{ i.text|truncatewords:20 }}</td>
     </tr>
@@ -26,5 +32,18 @@ Post
 </table>
 {% else %}
 <h2>Новостей нет!</h2>
+{% endif %}
+
+{% if page_obj.has_previous %}
+<a href="?{% url_replace page=1 %}">&laquo;</a>
+<a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+{% endif %}
+
+
+{{ page_obj.number }}
+
+{% if page_obj.has_next %}
+<a href="?{% url_replace page=page_obj.next_page_number %}">{{ page_obj.next_page_number }}</a>
+<a href="?page={{ page_obj.paginator.num_pages }}"> &raquo;</a>
 {% endif %}
 {% endblock content %}
