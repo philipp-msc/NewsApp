@@ -4,7 +4,7 @@ from .models import Post, Category, PostCategory
 
 class PostFilter(FilterSet):
     category = ModelMultipleChoiceFilter(
-        field_name ='postСategory',
+        field_name ='postCategory',
         queryset = Category.objects.all(),
         label = 'postcategory',
     )
@@ -13,5 +13,5 @@ class PostFilter(FilterSet):
         model = Post
         fields = {
             'title': ['icontains'],
-            'dateCreation': ['exact'],
+            'dateCreation': ['gt'],
         }
