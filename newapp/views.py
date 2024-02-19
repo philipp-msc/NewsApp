@@ -55,10 +55,11 @@ class PostDelete(DeleteView):
     model = Post
     template_name = 'post_delete.html'
     context_object_name = 'delete'
-    success_url = reverse_lazy('news')
+    success_url = reverse_lazy('posts')
 
 class PostUpdate(UpdateView):
     form_class = PostForm
     model = Post
     template_name = 'post_edit.html'
     context_object_name = 'post'
+    success_url = reverse_lazy('posts')
