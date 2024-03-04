@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.yandex',
+    'django_apscheduler',
 ]
 
 SITE_ID = 1
@@ -160,3 +161,30 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 ACCOUNT_FORMS = {"signup": "accounts.forms.CustomSignupForm"}
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'pheonov'
+EMAIL_HOST_PASSWORD = "geuazxvyepbhpgzd"
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+
+DEFAULT_FROM_EMAIL = "pheonov@yandex.ru"
+
+SERVER_EMAIL = "pheonov@yandex.ru"
+MANAGERS = (
+    ('Manager One', 'neckcrank@yandex.ru'),
+    ('Manager Two', 'philipp.msc@gmail.com'),
+)
+
+ADMINS = (
+    ('Admin one', 'sftestmail@mail.ru'),
+)
+
+APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
+APSCHEDULER_RUN_NOW_TIMEOUT = 25
+
+SITE_URL ='http://127.0.0.1:8000'
