@@ -9,10 +9,11 @@ from django.db.models import Exists, OuterRef
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_protect
 
-
 from .models import Post, Subscription, Category
 from .filters import PostFilter
 from .forms import PostForm
+
+from .tasks import send_email_task, weekly_send_email_task
 
 
 
@@ -51,7 +52,7 @@ class PostsSearch(ListView):
         context['filterset'] = self.filterset
         return context
 
-class PostCreate(PermissionRequiredMixin, CreateView):
+class PostCreate(CreateView):
     permission_required = ('newapp.add_post',)
     # raise_exception = True
     form_class = PostForm
@@ -65,6 +66,8 @@ class PostCreate(PermissionRequiredMixin, CreateView):
             post.categoryType = 'AR'
         elif self.request.path == '/news/create/':
             post.categoryType = 'NW'
+            post.save()
+            send_email_task.delay(post.pk)
         return super().form_valid(form)
 
 class PostDelete(PermissionRequiredMixin, DeleteView):
