@@ -15,6 +15,9 @@ from .forms import PostForm
 
 from .tasks import send_email_task, weekly_send_email_task
 
+from django.core.cache import cache # импортируем наш кэш
+
+
 
 
 class PostsList(ListView):
