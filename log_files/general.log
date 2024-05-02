@@ -1,1 +1,3 @@
 2024-04-19 10:10:47,795 INFO autoreload Watching for file changes with StatReloader
+2024-05-02 14:45:15,968 INFO autoreload Watching for file changes with StatReloader
+2024-05-02 14:46:14,908 INFO autoreload /Users/admin/PycharmProjects/NewsApp/project/project/settings.py changed, reloading.

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
+{% load i18n %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{% trans 'Title' %}</title>
 </head>
 <body>
-<h2>Новости недели: </h2>
+<h2>{% trans 'News of the week' %} </h2>
 <ul>
     {% for post in posts %}
         <li> <a> href="{{link}}{{post.get_absolut_url}}">{{post.title}}</a></li>

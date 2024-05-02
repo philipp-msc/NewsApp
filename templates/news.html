@@ -1,12 +1,17 @@
 {% extends 'flatpages/default.html' %}
 {% load custom_filters %}
- 
+
+{% load i18n %}
+
 {% block title %}
-Post
+{% trans 'Post' %}
 {% endblock title %}
- 
+
+{% include "translation.html" %}
+
+
 {% block content %}
-<h3>Все новости:</h3>
+<h3>{% trans 'All news:' %}</h3>
 
 <hr>
 
@@ -31,9 +36,9 @@ Post
 {% if news %}
 <table>
     <tr>
-    <td>Заголовок</td>
-    <td>Дата публикации</td>
-    <td>Описание</td>
+    <td>{% trans 'Title' %}</td>
+    <td>{% trans 'Date' %}</td>
+    <td>{% trans 'Description' %}</td>
     </tr>
     {% for i in news %}
     <tr>
@@ -45,7 +50,7 @@ Post
     {% endfor %}
 </table>
 {% else %}
-<h2>Новостей нет!</h2>
+<h2>{% trans 'Nothing here!' %}</h2>
 {% endif %}
 
 {% if page_obj.has_previous %}

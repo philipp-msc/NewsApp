@@ -1,8 +1,10 @@
 {% extends 'flatpages/default.html' %}
 {% load custom_filters %}
 
+{% load i18n %}
+
 {% block title %}
-Post
+{% trans 'Post' %}
 {% endblock title %}
 
 <!-- В контенте на странице мы выводим сам товар, идентификатор которого был передан в url -->

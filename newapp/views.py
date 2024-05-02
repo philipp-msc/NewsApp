@@ -1,7 +1,7 @@
 
 from datetime import datetime
 
-from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
+from django.views.generic import View, ListView, DetailView, CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.decorators import login_required
@@ -16,10 +16,15 @@ from .forms import PostForm
 from .tasks import send_email_task, weekly_send_email_task
 
 from django.core.cache import cache # импортируем наш кэш
+# from django.utils.translation import activate, get_supported_language_variant, LANGUAGE_SESSION_KEY
 
+from django.utils.translation import gettext as _ # импортируем функцию для перевода
+from django.http import HttpResponse
 
+from django.utils import timezone
+from django.shortcuts import redirect
 
-
+import pytz
 class PostsList(ListView):
     model = Post
     ordering = '-dateCreation'
@@ -117,3 +122,19 @@ def subscriptions(request):
         'subscriptions.html',
         {'categories': categories_with_subscriptions},
     )
+
+
+class Index(View):
+    def get(self, request):
+        models = Post.objects.all()
+        context = {
+            'models': models,
+            'current_time': timezone.localtime(timezone.now()),
+            'timezones': pytz.common_timezones
+        }
+
+        return HttpResponse(render(request, 'index.html', context))
+
+    def post(self, request):
+        request.session['django_timezone'] = request.POST['timezone']
+        return redirect('/')
