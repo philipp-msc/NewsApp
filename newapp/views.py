@@ -133,7 +133,7 @@ class Index(View):
             'timezones': pytz.common_timezones
         }
 
-        return HttpResponse(render(request, 'index.html', context))
+        return HttpResponse(render(request, 'posts.html', context))
 
     def post(self, request):
         request.session['django_timezone'] = request.POST['timezone']
