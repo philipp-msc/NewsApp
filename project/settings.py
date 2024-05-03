@@ -67,8 +67,7 @@ MIDDLEWARE = [
     'django.middleware.cache.FetchFromCacheMiddleware',
 
     'django.middleware.locale.LocaleMiddleware',
-    'basic.middlewares.TimezoneMiddleware',
-
+    'newapp.middlewares.TimezoneMiddleware',
 ]
 
 ROOT_URLCONF = 'project.urls'
